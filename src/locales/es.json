@@ -1,0 +1,20 @@
+{
+  "message": {
+    "labelratings": "Valoracion",
+    "title": "Deja tu comentario aquí",
+    "responder":"Responder",
+    "comentario":"Envia tu comentario",
+    "time":"Publicado:"
+  },
+  "subtitulo": "Ejemplo de modulo para comentarios, reviews, etc",
+  "titulo": "Modulo Comentarios",
+
+
+  "ratings":{
+    "nv1":"Pesimo",
+    "nv2":"Debe Mejorar",
+    "nv3":"Puede Mejorar",
+    "nv4":"Muy Bueno",
+    "nv5":"Excelente"
+  }
+}

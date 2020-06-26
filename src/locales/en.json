@@ -1,0 +1,20 @@
+{
+  "message": {
+    "labelratings": "Rating",
+    "title": "Leave your comments",
+    "responder":"Reply",
+    "comentario":"Post comment",
+    "time":"Date:"
+  },
+  "subtitulo": "Comments, review Seccion",
+  "titulo": "Comment Box",
+
+
+  "ratings":{
+    "nv1":"Poor",
+    "nv2":"Average",
+    "nv3":"Good",
+    "nv4":"Very Good",
+    "nv5":"Excellent"
+  }
+}

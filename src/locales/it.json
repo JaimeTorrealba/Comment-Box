@@ -1,0 +1,20 @@
+{
+  "message": {
+    "labelratings": "Rating",
+    "title": "Lascia il tuo commento",
+    "responder":"Rispondere",
+    "comentario":"Invia il tuo commento",
+    "time":"Publicato il:"
+  },
+  "subtitulo": "Esempio di Comment Box",
+  "titulo": "Comment Box",
+
+
+  "ratings":{
+    "nv1":"Pessimo",
+    "nv2":"Cosí Cosí",
+    "nv3":"Puede Mejorar",
+    "nv4":"Molto Buono",
+    "nv5":"Meraviglioso"
+  }
+}
