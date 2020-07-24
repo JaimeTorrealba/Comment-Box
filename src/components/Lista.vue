@@ -1,11 +1,12 @@
 <template>
 
-    <div class="columns">
+    <div class="columns mt-6">
        
 <div class="column is-6 is-offset-3 listazone">
   
 
-     <h2 class="has-text-left is-size-5 dejanos-tu" >{{$t("message.title")}}</h2>
+     <h2 class="has-text-left is-size-6 dejanos-tu mb-3" >Escribe tu comentario</h2>
+         
 
 
   <form class="" v-on:submit.prevent="agregar">
@@ -17,16 +18,11 @@
   </p>
  
      <div class="control">
-    <div class="select">
-      <select id="selectrating">
-        <option value="0"  >{{$t("message.labelratings")}}</option>
-        <option value="1" > 1 {{$t("ratings.nv1")}}</option>
-        <option value="2"> 2 {{$t("ratings.nv2")}}</option>
-        <option value="3" > 3 {{$t("ratings.nv3")}}</option>
-        <option value="4" > 4 {{$t("ratings.nv4")}}</option>
-        <option value="5" > 5 {{$t("ratings.nv5")}}</option>
-      </select>
-    </div>
+   
+    
+      <b-rate custom-text="Rating" @change="success" :max=5 class="mt-1" v-model=input.rate></b-rate>
+     
+    
         </div>
         
  
@@ -41,7 +37,7 @@
 
 
 
-<button class="button envia-tu mb-6" type="onsubmit">{{$t("message.comentario")}}</button>
+<button class="button envia-tu mb-6" type="onsubmit">Publicar Comentario</button>
 
   </form>
 
@@ -60,12 +56,12 @@
     <div class="content">
       
         <strong class="title is-6">{{item.name}}</strong> 
-        <span class="ratingm" v-if="item.ratings == 5"  >{{$t("ratings.nv5")}} &#9733; &#9733; &#9733; &#9733; &#9733;</span>
-        <span class="ratingm" v-if="item.ratings == 4"  >{{$t("ratings.nv4")}} &#9733; &#9733; &#9733; &#9733;</span>
-        <span class="ratingm" v-if="item.ratings == 3"  >{{$t("ratings.nv3")}} &#9733; &#9733; &#9733;</span>
-        <span class="ratingm" v-if="item.ratings == 2"  >{{$t("ratings.nv2")}} &#9733; &#9733;</span>
-        <span class="ratingm" v-if="item.ratings == 1"  >{{$t("ratings.nv1")}} &#9733;</span>
-        <br><p class="is-size-7">{{$t("message.time")}} {{moment(item.date).fromNow()}}</p> 
+        <span class="ratingm" v-if="item.ratings == 5"  >Excelente &#9733; &#9733; &#9733; &#9733; &#9733;</span>
+        <span class="ratingm" v-if="item.ratings == 4"  >Muy Bueno &#9733; &#9733; &#9733; &#9733;</span>
+        <span class="ratingm" v-if="item.ratings == 3"  >Bueno &#9733; &#9733; &#9733;</span>
+        <span class="ratingm" v-if="item.ratings == 2"  >Debe Mejorar &#9733; &#9733;</span>
+        <span class="ratingm" v-if="item.ratings == 1"  >Pesimo &#9733;</span>
+        <br><p class="is-size-7">Hace: {{moment(item.date).fromNow()}}</p> 
         <p class="italict"> {{item.comments}}</p>
 
        <a @click="addlikes(index)"><img src="../assets/corazon.svg" width="15px" alt=""></a> <span class="is-size-6" v-show="item.likes > 0">{{item.likes}} |</span> · 
@@ -100,7 +96,7 @@
     </div>
     <div class="field">
       <p class="control">
-        <button class="button is-link is-outlined" @click="addreplycomment(index)">{{$t("message.comentario")}}</button>
+        <button class="button is-link is-outlined is-small" @click="addreplycomment(index)">Publicar respuesta</button>
       </p>
     </div>
   </div>
@@ -123,23 +119,39 @@
 
 
 <script>
-var moment = require('moment')
+let moment = require('moment')
+
+import Vue from 'vue'
+import { Table, Input } from 'buefy'
+import 'buefy/dist/buefy.css'
+
+Vue.use(Table)
+Vue.use(Input)
+
+
 export default {
   name: 'Lista',
   data(){
       return{
         moment: moment,
-         input:[{nombre: '', comentario:'' }],
+        max:5,
+         input:[{nombre: '', comentario:'', rate:0 }],
          review:[{name: '', ratings:0, comments: '',date:'', likes: 0, replyt:false, 
          reply:[{repc: '', date2: ''}]}],
          comentinput:''
       }
   },
   methods:{
+    success() {
+                this.$buefy.toast.open({
+                    message: 'Gracias por tu reseña',
+                    type: 'is-success'
+                })
+    },
     agregar(){
       var n = this.input.nombre
       var c = this.input.comentario
-      var r = document.getElementById("selectrating").value
+      var r = this.input.rate
       var day = moment();
      
      if (n && c && r){
